@@ -36,7 +36,12 @@ const Index = (props) => (
       <motion.div variants={stagger} className="product-row">
         {props.products.map((product) => (
           <Link key={product.id} href="/products/[id]" as={`/products/${product.id}`}>
-            <motion.div variants={fadeInUp} className="card">
+            <motion.div
+              variants={fadeInUp}
+              className="card"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <span className="category">Protein</span>
               <motion.img
                 key={product.image}
