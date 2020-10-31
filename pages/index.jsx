@@ -2,30 +2,7 @@ import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import { motion } from 'framer-motion';
 
-const easing = [0.6, -0.05, 0.01, 0.99];
-
-const fadeInUp = {
-  initial: {
-    y: 60,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: easing,
-    },
-  },
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+import { fadeInUp, stagger } from '../animations';
 
 const Index = (props) => (
   <motion.div exit={{ opacity: 0 }} initial="initial" animate="animate">
@@ -36,12 +13,7 @@ const Index = (props) => (
       <motion.div variants={stagger} className="product-row">
         {props.products.map((product) => (
           <Link key={product.id} href="/products/[id]" as={`/products/${product.id}`}>
-            <motion.div
-              variants={fadeInUp}
-              className="card"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div variants={fadeInUp} className="card" whileTap={{ scale: 0.95 }}>
               <span className="category">Protein</span>
               <motion.img
                 key={product.image}
